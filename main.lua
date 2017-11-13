@@ -31,7 +31,7 @@ function love.mousepressed(x, y, btn, isTouch)
     -- if (distanceBetweenPoints(x, y, button.x, button.y) < button.radius) then
     if (distanceBetweenPoints(love.mouse.getX(), love.mouse.getY(), button.x, button.y) < button.radius) then
       score = score + 1
-      moveButton()
+      moveButton(button.radius)
     end
   end
 end
@@ -40,7 +40,7 @@ function distanceBetweenPoints(x1, y1, x2, y2)
   return math.sqrt((y2 - y1)^2 + (x2 - x1)^2)
 end
 
-function moveButton()
-  button.x = love.math.random(0, love.graphics.getWidth())
-  button.y = love.math.random(0, love.graphics.getHeight())
+function moveButton(border)
+  button.x = love.math.random(0 + border, love.graphics.getWidth() - border)
+  button.y = love.math.random(0 + border, love.graphics.getHeight() - border)
 end
