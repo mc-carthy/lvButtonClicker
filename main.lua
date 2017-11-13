@@ -6,13 +6,19 @@ function love.load()
   button.radius = 50
 
   score = 0
-  timer = 0
+  timer = 10
 
   myFont = love.graphics.newFont(40)
 end
 
 -- This is the game loop, default is 60fps
 function love.update(dt)
+  if (timer > 0) then
+    timer = timer - dt
+  end
+  if (timer < 0) then
+    timer = 0
+  end
 end
 
 -- This draws graphics to the screen, runs at 60fps default
@@ -23,6 +29,7 @@ function love.draw()
   love.graphics.setFont(myFont)
   love.graphics.setColor(255, 255, 255)
   love.graphics.print(score)
+  love.graphics.print(math.ceil(timer), 100, 0)
 end
 
 function love.mousepressed(x, y, btn, isTouch)
